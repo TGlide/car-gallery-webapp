@@ -19,9 +19,36 @@ const theme = extendTheme({
     background: '#E5E5E5',
   },
   components: {
+    Link: {
+      baseStyle: {
+        fontFamily: 'Playfair Display',
+        fontStyle: 'normal',
+        fontWeight: 'normal',
+        fontSize: '1.5rem',
+        color: 'primary',
+        position: 'relative',
+        _hover: {
+          cursor: 'pointer',
+          textDecoration: 'none',
+          _before: {
+            width: '100%',
+          },
+        },
+        _before: {
+          content: '""',
+          position: 'absolute',
+          height: '2px',
+          width: 0,
+          left: 0,
+          bottom: 0,
+          backgroundColor: 'primary',
+          transition: 'width 500ms cubic-bezier(0.2, 1, 0.2, 1)',
+        },
+      },
+    },
     Text: {
       baseStyle: (props) => ({
-        color: mode('text', 'white')(props),
+        color: mode('text', 'background')(props),
       }),
       variants: {
         heading: {
@@ -36,13 +63,14 @@ const theme = extendTheme({
           fontWeight: 'normal',
           fontSize: '1.75rem',
         },
-        paragraph: {
+        paragraph: (props) => ({
           fontFamily: 'Lato',
           fontStyle: 'normal',
           fontWeight: '300',
           fontSize: '2rem',
           lineHeight: '2.375rem',
-        },
+          color: mode('textSecondary', 'background')(props),
+        }),
       },
     },
   },

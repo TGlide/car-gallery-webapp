@@ -1,0 +1,39 @@
+schema:
+  - ${DATABASE_URL}
+
+documents:
+  - ./src/**/*.gql
+
+overwrite: true
+
+hooks:
+  afterAllFileWrite:
+    - prettier --write
+    - eslint --fix
+
+generates:
+  ./src/lib/graphql/generated/schemas.ts:
+    plugins:
+      - typescript
+
+  ./src/lib/graphql/generated/operations.ts:
+    preset: import-types
+    presetConfig:
+      typesPath: ./schemas
+    plugins:
+      - typescript-operations
+
+  ./src/lib/graphql/generated/hooks.ts:
+    preset: import-types
+    presetConfig:
+      typesPath: ./operations
+    plugins:
+      - typescript-react-query
+    config:
+      fetcher:
+        endpoint: ${DATABASE_URL}
+        fetchParams:
+          headers:
+            content-type: application/json
+      exposeQueryKeys: true
+      errorType: GraphqlApiError

@@ -1,0 +1,10 @@
+query GetAllCars {
+  allCars {
+    totalCount
+    nodes {
+      id
+      name
+      images
+    }
+  }
+}

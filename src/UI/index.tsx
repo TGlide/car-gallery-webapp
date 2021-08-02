@@ -1,1 +1,2 @@
-export { Ellipse } from "./Ellipse";
+export { Corner } from './Corner'
+export { Ellipse } from './Ellipse'

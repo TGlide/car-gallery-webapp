@@ -1,2 +1,2 @@
-export { Container } from "@chakra-ui/react";
-export { DarkModeSwitch } from "./DarkModeSwitch";
+export { Container } from './Container'
+export { DarkModeSwitch } from './DarkModeSwitch'
