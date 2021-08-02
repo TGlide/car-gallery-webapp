@@ -9,7 +9,10 @@ export type GetAllCarsQuery = { __typename?: 'Query' } & {
       'totalCount'
     > & {
         nodes: Array<
-          { __typename?: 'Car' } & Pick<Types.Car, 'id' | 'name' | 'images'>
+          { __typename?: 'Car' } & Pick<
+            Types.Car,
+            'id' | 'name' | 'images' | 'year'
+          >
         >
       }
   >

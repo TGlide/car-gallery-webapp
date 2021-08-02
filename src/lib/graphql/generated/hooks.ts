@@ -30,6 +30,7 @@ export const GetAllCarsDocument = `
       id
       name
       images
+      year
     }
   }
 }

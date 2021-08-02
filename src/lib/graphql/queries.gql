@@ -5,6 +5,7 @@ query GetAllCars {
       id
       name
       images
+      year
     }
   }
 }

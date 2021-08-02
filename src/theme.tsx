@@ -63,6 +63,13 @@ const theme = extendTheme({
           fontWeight: 'normal',
           fontSize: '1.75rem',
         },
+        button: {
+          fontFamily: 'Playfair Display',
+          fontStyle: 'normal',
+          fontWeight: 'normal',
+          fontSize: '1rem',
+          color: 'primary',
+        },
         paragraph: (props) => ({
           fontFamily: 'Lato',
           fontStyle: 'normal',

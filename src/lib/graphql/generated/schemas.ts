@@ -30,6 +30,7 @@ export type Car = Node & {
   name: Scalars['String']
   images: Array<Maybe<Scalars['String']>>
   createdAt?: Maybe<Scalars['Datetime']>
+  year?: Maybe<Scalars['Int']>
 }
 
 /** A condition to be used against `Car` object types. All fields are tested for equality and combined with a logical ‘and.’ */
@@ -42,6 +43,8 @@ export type CarCondition = {
   images?: Maybe<Array<Maybe<Scalars['String']>>>
   /** Checks for equality with the object’s `createdAt` field. */
   createdAt?: Maybe<Scalars['Datetime']>
+  /** Checks for equality with the object’s `year` field. */
+  year?: Maybe<Scalars['Int']>
 }
 
 /** An input for mutations affecting `Car` */
@@ -50,6 +53,7 @@ export type CarInput = {
   name: Scalars['String']
   images: Array<Maybe<Scalars['String']>>
   createdAt?: Maybe<Scalars['Datetime']>
+  year?: Maybe<Scalars['Int']>
 }
 
 /** Represents an update to a `Car`. Fields that are set will be updated. */
@@ -58,6 +62,7 @@ export type CarPatch = {
   name?: Maybe<Scalars['String']>
   images?: Maybe<Array<Maybe<Scalars['String']>>>
   createdAt?: Maybe<Scalars['Datetime']>
+  year?: Maybe<Scalars['Int']>
 }
 
 /** A connection to a list of `Car` values. */
@@ -93,6 +98,8 @@ export enum CarsOrderBy {
   ImagesDesc = 'IMAGES_DESC',
   CreatedAtAsc = 'CREATED_AT_ASC',
   CreatedAtDesc = 'CREATED_AT_DESC',
+  YearAsc = 'YEAR_ASC',
+  YearDesc = 'YEAR_DESC',
   PrimaryKeyAsc = 'PRIMARY_KEY_ASC',
   PrimaryKeyDesc = 'PRIMARY_KEY_DESC',
 }

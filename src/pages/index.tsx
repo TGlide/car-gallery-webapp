@@ -1,11 +1,12 @@
-import { Box, Flex, Link, Text } from '@chakra-ui/react'
+import { ViewIcon, LinkIcon } from '@chakra-ui/icons'
+import { Box, Flex, Grid, Link, Text } from '@chakra-ui/react'
 
-import { Corner, Ellipse } from 'UI'
+import { Corner, Ellipse, IconButton } from 'UI'
 import { Container, DarkModeSwitch } from 'components'
 import { useGetAllCarsQuery } from 'lib/graphql/generated/hooks'
 
 const Index = () => {
-  const { isLoading } = useGetAllCarsQuery()
+  const { data, isLoading } = useGetAllCarsQuery()
 
   if (isLoading) {
     return null
@@ -41,7 +42,7 @@ const Index = () => {
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Et in
               fermentum vitae, adipiscing ante pellentesque volutpat, amet.
             </Text>
-            <Link display="inline-block" mt="1.5rem">
+            <Link href="#gallery" display="inline-block" mt="1.5rem">
               View gallery
             </Link>
           </Box>
@@ -54,9 +55,57 @@ const Index = () => {
               background={`url(https://i.imgur.com/Sj16XCO.jpeg)`}
               backgroundSize="cover"
               backgroundPosition="center"
+              borderRadius="0.5rem"
             />
           </Box>
         </Flex>
+
+        <Grid
+          gridTemplateColumns={`repeat(${Math.min(
+            3,
+            data.allCars.totalCount
+          )}, 1fr)`}
+          gridGap="2rem"
+          id="gallery"
+        >
+          {data.allCars.nodes.map((car) => {
+            return (
+              <Flex flexDir="column" justifyContent="center" key={car.id}>
+                <Box pos="relative">
+                  <Corner sizeInRem={3} position="upperLeft" />
+                  <Corner sizeInRem={3} position="bottomRight" />
+                  <Box
+                    w="20rem"
+                    h="12rem"
+                    background={`url(${car.images[0]})`}
+                    backgroundSize="cover"
+                    backgroundPosition="center"
+                    borderRadius="0.5rem"
+                  />
+                  <Flex justify="center" pos="absolute" bottom="1rem" w="100%">
+                    <IconButton text="View more images" mr="0.5rem">
+                      <ViewIcon color="primary" />
+                    </IconButton>
+                    <IconButton text="Copy link" mr="0.5rem">
+                      <LinkIcon color="primary" />
+                    </IconButton>
+                  </Flex>
+                </Box>
+                <Text textAlign="center" variant="subHeading" mt="0.5rem">
+                  {car.name}
+                </Text>
+                <Text
+                  textAlign="center"
+                  fontStyle="italic"
+                  variant="subHeading"
+                  mt="-0.5rem"
+                >
+                  {car.year}
+                </Text>
+              </Flex>
+            )
+          })}
+        </Grid>
       </Container>
       <DarkModeSwitch />
     </Box>
