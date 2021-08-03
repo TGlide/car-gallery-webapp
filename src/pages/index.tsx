@@ -7,12 +7,8 @@ import { CarImage } from 'components'
 import { useGetAllCarsQuery } from 'lib/graphql/generated/hooks'
 
 const Index = () => {
-  const { data, isLoading } = useGetAllCarsQuery()
+  const { data } = useGetAllCarsQuery()
   const router = useRouter()
-
-  if (isLoading) {
-    return null
-  }
 
   return (
     <Layout pt="0">
