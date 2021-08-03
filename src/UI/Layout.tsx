@@ -20,7 +20,7 @@ export const Layout = ({ children, ...rest }: FlexProps) => {
             pos: 'fixed',
             left: '1rem',
             top: '1rem',
-            zIndex: 10,
+            zIndex: 1000,
           }}
           href="/"
           onClick={(e) => {
@@ -35,8 +35,17 @@ export const Layout = ({ children, ...rest }: FlexProps) => {
         </Link>
       )}
 
-      <Ellipse pos="absolute" w="16rem" h="16rem" left="-5rem" top="-5rem" />
-      <Container {...rest}>{children}</Container>
+      <Ellipse
+        pos="absolute"
+        w="16rem"
+        h="16rem"
+        left="-5rem"
+        top="-5rem"
+        zIndex="10"
+      />
+      <Container pt="5rem" {...rest}>
+        {children}
+      </Container>
       <DarkModeSwitch />
     </Box>
   )

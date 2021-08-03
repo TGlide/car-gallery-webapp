@@ -15,33 +15,76 @@ const Index = () => {
   }
 
   return (
-    <Layout>
-      <Flex height="100vh" alignItems="center">
+    <Layout pt="0">
+      <Flex height="100vh" minHeight="41.25rem" alignItems="center">
         <Box>
-          <Box pos="relative" ml="-0.5rem" mr="-5rem" zIndex="10">
+          <Box
+            pos="relative"
+            ml="-0.5rem"
+            mr="-5rem"
+            zIndex="10"
+            sx={{
+              textAlign: { base: 'center', lg: 'left' },
+              maxW: '100%',
+            }}
+          >
             <Text
               variant="heading"
-              zIndex="5"
-              pos="absolute"
-              w="100%"
-              left="0.25rem"
-              top="-0.25rem"
+              sx={{
+                zIndex: '5',
+                pos: 'absolute',
+                w: '100%',
+                left: '0.25rem',
+                top: '-0.25rem',
+                whiteSpace: 'nowrap',
+              }}
             >
               Vintage Cars
             </Text>
-            <Text variant="heading" zIndex="1000" color="primary" opacity="0.5">
+            <Text
+              variant="heading"
+              sx={{
+                zIndex: '1000',
+                color: 'primary',
+                opacity: '0.5',
+                whiteSpace: 'nowrap',
+              }}
+            >
               Vintage Cars
             </Text>
           </Box>
-          <Text variant="paragraph" maxW="30rem">
+          <Text
+            variant="paragraph"
+            sx={{
+              textAlign: { base: 'center', lg: 'left' },
+              maxW: '30rem',
+            }}
+          >
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Et in
             fermentum vitae, adipiscing ante pellentesque volutpat, amet.
           </Text>
-          <Link href="#gallery" display="inline-block" mt="1.5rem">
-            View gallery
-          </Link>
+          <Flex
+            sx={{
+              justifyContent: { base: 'center', lg: 'flex-start' },
+            }}
+          >
+            <Link
+              href="#gallery"
+              sx={{
+                display: 'inline-block',
+                mt: '1.5rem',
+              }}
+            >
+              View gallery
+            </Link>
+          </Flex>
         </Box>
-        <Box pos="relative">
+        <Box
+          sx={{
+            pos: 'relative',
+            display: { base: 'none', lg: 'block' },
+          }}
+        >
           <Corner position="upperLeft" />
           <Corner position="bottomRight" />
           <Box
@@ -56,12 +99,15 @@ const Index = () => {
       </Flex>
 
       <Grid
-        gridTemplateColumns={`repeat(${Math.min(
-          3,
-          data?.allCars?.totalCount || 0
-        )}, 1fr)`}
-        gridGap="2rem"
         id="gallery"
+        sx={{
+          gridTemplateColumns: {
+            base: '1fr',
+            md: `repeat(${Math.min(2, data?.allCars?.totalCount || 0)}, 1fr)`,
+            lg: `repeat(${Math.min(3, data?.allCars?.totalCount || 0)}, 1fr)`,
+          },
+          gridGap: '2rem',
+        }}
       >
         {data?.allCars?.nodes.map((car) => {
           return (

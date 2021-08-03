@@ -15,7 +15,7 @@ export const Container = (props: FlexProps) => {
       color={color[colorMode]}
       minHeight="100vh"
       height="100%"
-      overflowY="hidden"
+      overflow="hidden"
       pb="2rem"
       {...props}
     />

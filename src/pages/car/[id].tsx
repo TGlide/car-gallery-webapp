@@ -52,12 +52,21 @@ const CarPage = () => {
           {data?.carById?.year}
         </Text>
         <Grid
-          gridTemplateColumns={`repeat(${Math.min(
-            3,
-            data?.carById?.images.length || 0
-          )}, 1fr)`}
-          gridGap="2rem"
-          mt="2rem"
+          sx={{
+            gridTemplateColumns: {
+              base: '1fr',
+              md: `repeat(${Math.min(
+                2,
+                data?.carById?.images.length || 0
+              )},1fr)`,
+              lg: `repeat(${Math.min(
+                3,
+                data?.carById?.images.length || 0
+              )}, 1fr)`,
+            },
+            gridGap: '2rem',
+            mt: '2rem',
+          }}
         >
           {data?.carById?.images?.map((image, index) => {
             return (

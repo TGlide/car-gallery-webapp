@@ -48,14 +48,16 @@ export const CarImage = ({
           borderRadius="0.5rem"
         />
         <Flex
-          justify="center"
-          pos="absolute"
-          bottom="1rem"
-          w="100%"
-          opacity="0"
-          transform="translateY(100%)"
-          transition="opacity 0.5s ease, transform 0.25s ease"
           className="buttons"
+          sx={{
+            justifyContent: 'center',
+            pos: 'absolute',
+            bottom: '1rem',
+            w: '100%',
+            opacity: { base: '1', lg: '0' },
+            transform: { base: 'none', lg: 'translateY(100%)' },
+            transition: 'opacity 0.5s ease, transform 0.25s ease',
+          }}
         >
           {children}
         </Flex>
