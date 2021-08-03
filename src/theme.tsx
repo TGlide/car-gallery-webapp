@@ -57,7 +57,12 @@ const theme = extendTheme({
           fontWeight: 'bold',
           fontSize: '6rem;',
         },
-        subHeading: {
+        headingSmall: {
+          fontFamily: 'Playfair Display',
+          fontStyle: 'normal',
+          fontSize: '3rem;',
+        },
+        label: {
           fontFamily: 'Playfair Display',
           fontStyle: 'normal',
           fontWeight: 'normal',

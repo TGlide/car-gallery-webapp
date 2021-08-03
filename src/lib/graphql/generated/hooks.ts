@@ -54,3 +54,33 @@ useGetAllCarsQuery.getKey = (variables?: Types.GetAllCarsQueryVariables) => [
   'GetAllCars',
   variables,
 ]
+
+export const GetCarDocument = `
+    query GetCar($id: Int!) {
+  carById(id: $id) {
+    id
+    images
+    name
+    year
+  }
+}
+    `
+export const useGetCarQuery = <
+  TData = Types.GetCarQuery,
+  TError = GraphqlApiError
+>(
+  variables: Types.GetCarQueryVariables,
+  options?: UseQueryOptions<Types.GetCarQuery, TError, TData>
+) =>
+  useQuery<Types.GetCarQuery, TError, TData>(
+    ['GetCar', variables],
+    fetcher<Types.GetCarQuery, Types.GetCarQueryVariables>(
+      GetCarDocument,
+      variables
+    ),
+    options
+  )
+useGetCarQuery.getKey = (variables: Types.GetCarQueryVariables) => [
+  'GetCar',
+  variables,
+]

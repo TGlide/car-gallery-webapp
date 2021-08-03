@@ -9,3 +9,12 @@ query GetAllCars {
     }
   }
 }
+
+query GetCar($id: Int!) {
+  carById(id: $id) {
+    id
+    images
+    name
+    year
+  }
+}

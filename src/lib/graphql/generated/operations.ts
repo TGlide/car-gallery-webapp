@@ -17,3 +17,13 @@ export type GetAllCarsQuery = { __typename?: 'Query' } & {
       }
   >
 }
+
+export type GetCarQueryVariables = Types.Exact<{
+  id: Types.Scalars['Int']
+}>
+
+export type GetCarQuery = { __typename?: 'Query' } & {
+  carById?: Types.Maybe<
+    { __typename?: 'Car' } & Pick<Types.Car, 'id' | 'images' | 'name' | 'year'>
+  >
+}

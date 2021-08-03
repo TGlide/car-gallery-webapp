@@ -1,2 +1,2 @@
-export { Container } from './Container'
+export { CarImage } from './CarImage'
 export { DarkModeSwitch } from './DarkModeSwitch'

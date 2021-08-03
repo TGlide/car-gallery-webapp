@@ -1,47 +1,47 @@
-import { Flex, FlexProps, Text } from '@chakra-ui/react'
+import {
+  Flex,
+  FlexProps,
+  Tooltip,
+  TooltipProps,
+  useColorMode,
+} from '@chakra-ui/react'
 
 type IconButtonProps = {
   children: JSX.Element
-  text: string | JSX.Element
+  text?: string
+  textPlacement?: TooltipProps['placement']
 } & FlexProps
 
-export const IconButton = ({ children, text, ...rest }: IconButtonProps) => {
+export const IconButton = ({
+  children,
+  text,
+  textPlacement = 'top',
+  ...rest
+}: IconButtonProps) => {
+  const { colorMode } = useColorMode()
+
   return (
-    <Flex
-      bgColor="white"
-      alignItems="center"
-      w="auto"
-      maxW="2rem"
-      h="2rem"
-      borderRadius="999px"
-      overflow="hidden"
-      opacity="0.75"
-      sx={{
-        transition: 'opacity 0.5s ease, max-width 0.5s ease',
-        _hover: {
-          cursor: 'pointer',
-          maxWidth: '15rem',
-          opacity: 1,
-        },
-      }}
-      {...rest}
-    >
+    <Tooltip label={text} placement={textPlacement}>
       <Flex
-        justifyContent="center"
+        as="button"
+        bgColor={colorMode === 'dark' ? 'gray.900' : 'white'}
         alignItems="center"
+        justifyContent="center"
         w="2rem"
         h="2rem"
-        flexShrink={0}
+        borderRadius="999px"
+        opacity="0.75"
+        sx={{
+          transition: 'opacity 0.25s ease',
+          _hover: {
+            cursor: 'pointer',
+            opacity: 1,
+          },
+        }}
+        {...rest}
       >
         {children}
       </Flex>
-      {typeof text === 'string' ? (
-        <Text variant="button" whiteSpace="nowrap" mr="0.5rem">
-          {text}
-        </Text>
-      ) : (
-        text
-      )}
-    </Flex>
+    </Tooltip>
   )
 }
