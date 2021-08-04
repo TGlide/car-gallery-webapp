@@ -16,6 +16,7 @@ export const IconButton = ({
   children,
   text,
   textPlacement = 'top',
+  sx,
   ...rest
 }: IconButtonProps) => {
   const { colorMode } = useColorMode()
@@ -37,6 +38,7 @@ export const IconButton = ({
             cursor: 'pointer',
             opacity: 1,
           },
+          ...sx,
         }}
         {...rest}
       >

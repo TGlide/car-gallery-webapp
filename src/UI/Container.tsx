@@ -1,6 +1,6 @@
 import { Flex, useColorMode, FlexProps } from '@chakra-ui/react'
 
-export const Container = (props: FlexProps) => {
+export const Container = ({ sx, ...props }: FlexProps) => {
   const { colorMode } = useColorMode()
 
   const bgColor = { light: 'background', dark: 'gray.900' }
@@ -8,8 +8,9 @@ export const Container = (props: FlexProps) => {
   const color = { light: 'black', dark: 'white' }
   return (
     <Flex
+      direction="column"
       sx={{
-        direction: 'column',
+        flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'flex-start',
         bg: bgColor[colorMode],
@@ -18,6 +19,7 @@ export const Container = (props: FlexProps) => {
         height: '100%',
         overflow: 'hidden',
         pb: '2rem',
+        ...sx,
       }}
       {...props}
     />
