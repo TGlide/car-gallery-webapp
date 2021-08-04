@@ -138,6 +138,7 @@ const Index = ({ initialData }: IndexProps) => {
             lg: `repeat(${Math.min(3, data?.allCars?.totalCount || 0)}, 1fr)`,
           },
           gridGap: '2rem',
+          placeItems: 'start',
         }}
       >
         {data?.allCars?.nodes.map((car) => {

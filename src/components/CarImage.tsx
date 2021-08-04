@@ -68,7 +68,10 @@ export const CarImage = ({
         </Flex>
       </Box>
       {label && (
-        <Text sx={{ textAlign: 'center', mt: '0.5rem' }} variant="label">
+        <Text
+          sx={{ textAlign: 'center', mt: '0.5rem', maxW: '20rem' }}
+          variant="label"
+        >
           {label}
         </Text>
       )}
@@ -79,6 +82,7 @@ export const CarImage = ({
             textAlign: 'center',
             fontStyle: 'italic',
             mt: '-0.5rem',
+            maxW: '20rem',
           }}
         >
           {description}
