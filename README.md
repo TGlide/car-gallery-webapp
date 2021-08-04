@@ -1,39 +1,90 @@
-# Example app with [chakra-ui](https://github.com/chakra-ui/chakra-ui) and Typescript
+<p align="center">
+  <h3 align="center">Vintage Cars Gallery Webapp</h3>
+  <p align="center">
+    A Next.js Web App to view a collection of vintage cars
+  </p>
+  <p align="center">
+    <a href="https://nextjs.org/">
+      <img src="https://img.shields.io/badge/frontend-Next.js-%23000000?style=for-the-badge&logo=next.js" alt="Built with Next.js">
+    </a>
+    <a href="https://www.typescriptlang.org/">
+      <img src="https://img.shields.io/badge/types-typescript-%23007ACC?style=for-the-badge&logo=typescript" alt="Built with Typescript">
+    </a>
+    <a href="https://chakra-ui.com/">
+      <img src="https://img.shields.io/badge/styling-Chakra UI-%23319795?style=for-the-badge" alt="Built with Chakra UI">
+    </a>
+  </p>
+</p>
 
-This example features how to use [chakra-ui](https://github.com/chakra-ui/chakra-ui) as the component library within a Next.js app with typescript.
+<!-- TABLE OF CONTENTS -->
 
-Next.js and chakra-ui have built-in TypeScript declarations, so we'll get autocompletion for their modules straight away.
+## Table of Contents
 
-We are connecting the Next.js `_app.js` with `chakra-ui`'s Provider and theme so the pages can have app-wide dark/light mode. We are also creating some components which shows the usage of `chakra-ui`'s style props.
+- [Table of Contents](#table-of-contents)
+- [About The Project](#about-the-project)
+  - [Built With](#built-with)
+- [Getting Started](#getting-started)
+  - [Prerequisites](#prerequisites)
+  - [Installation](#installation)
+- [Usage](#usage)
+  - [Run App](#run-app)
+  - [Preview](#preview)
 
-## Preview
+<!-- ABOUT THE PROJECT -->
 
-Preview the example live on [StackBlitz](http://stackblitz.com/):
+## About The Project
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/vercel/next.js/tree/canary/examples/with-chakra-ui-typescript)
+This repo was created with Next JS, using Typescript. I chose this framework for its excelent Typescript support, optimizations, static file serving and also for its starter template with Chakra UI and Typescript, which I used as a starting point. Chakra UI was my styling choice for its high customization potential, and the utility-based props approach which is inspired by TailwindCSS, making development faster. 
 
-## Deploy your own
+### Built With
 
-Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example):
+-   Frontend
+    -   [Next JS](#319795)
+    -   [Typescript](https://www.typescriptlang.org/)
+-   Tests
+    -   [Cypress](https://www.cypress.io/)
+-   Styling
+    -   [Chakra UI](https://chakra-ui.com/)
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/next.js/tree/canary/examples/with-chakra-ui-typescript&project-name=with-chakra-ui-typescript&repository-name=with-chakra-ui-typescript)
+## Getting Started
 
-## How to use
+To get a local copy up and running follow these simple steps.
 
-### Using `create-next-app`
+### Prerequisites
 
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init) or [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/) to bootstrap the example:
+`yarn` installed on your local machine.
 
-```bash
-npx create-next-app --example with-chakra-ui-typescript with-chakra-ui-typescript-app
-# or
-yarn create next-app --example with-chakra-ui-typescript with-chakra-ui-typescript-app
+### Installation
+
+1. Clone the repo
+
+```sh
+git clone https://github.com/TGlide/car-gallery-webapp/
+cd car-gallery-webapp
 ```
 
-Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
+2. Install Yarn dependencies
 
-## Notes
+```sh
+yarn
+```
 
-Chakra has supported Gradients and RTL in `v1.1`. To utilize RTL, [add RTL direction and swap](https://chakra-ui.com/docs/features/rtl-support).
+## Usage
 
-If you don't have multi-direction app, you should make `<Html lang="ar" dir="rtl">` inside `_document.ts`.
+### Run App
+
+```sh
+yarn dev
+```
+
+### Preview
+
+You can check out a live preview at: https://car-gallery-webapp.vercel.app/
+
+### Run Tests
+
+```sh
+yarn run cypress open
+```
+
+
