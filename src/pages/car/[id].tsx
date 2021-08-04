@@ -47,6 +47,15 @@ export async function getServerSideProps({
     { id: Number(id) }
   )()
 
+  if (!initialData.carById) {
+    return {
+      redirect: {
+        destination: '/',
+        permanent: false,
+      },
+    }
+  }
+
   return {
     props: { initialData },
   }
