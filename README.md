@@ -34,7 +34,7 @@
 
 ## About The Project
 
-This repo was created with Next JS, using Typescript. I chose this framework for its excelent Typescript support, optimizations, static file serving and also for its starter template with Chakra UI and Typescript, which I used as a starting point. Chakra UI was my styling choice for its high customization potential, and the utility-based props approach which is inspired by TailwindCSS, making development faster. 
+This repo was created with Next JS, using Typescript. I chose this framework for its excelent Typescript support, optimizations, server side rendering and also for its starter template with Chakra UI and Typescript, which I used as a starting point. Chakra UI was my styling choice for its high customization potential, and the utility-based props approach which is inspired by TailwindCSS, making development faster. 
 
 ### Built With
 
