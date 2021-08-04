@@ -30,10 +30,6 @@ generates:
     plugins:
       - typescript-react-query
     config:
-      fetcher:
-        endpoint: process.env.NEXT_PUBLIC_DATABASE_URL
-        fetchParams:
-          headers:
-            content-type: application/json
+      fetcher: lib/graphql/api#fetcher
       exposeQueryKeys: true
       errorType: GraphqlApiError

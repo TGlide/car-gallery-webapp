@@ -1,13 +1,38 @@
 import { LinkIcon, ViewIcon } from '@chakra-ui/icons'
 import { Box, Flex, Grid, Link, Text } from '@chakra-ui/react'
+import { GetServerSidePropsResult } from 'next'
 import { useRouter } from 'next/dist/client/router'
 
 import { Corner, IconButton, Layout } from 'UI'
 import { CarImage } from 'components'
-import { useGetAllCarsQuery } from 'lib/graphql/generated/hooks'
+import { fetcher } from 'lib/graphql/api'
+import {
+  GetAllCarsDocument,
+  useGetAllCarsQuery,
+} from 'lib/graphql/generated/hooks'
+import {
+  GetAllCarsQuery,
+  GetAllCarsQueryVariables,
+} from 'lib/graphql/generated/operations'
 
-const Index = () => {
-  const { data } = useGetAllCarsQuery()
+type IndexProps = {
+  initialData: GetAllCarsQuery
+}
+
+export async function getServerSideProps(): Promise<
+  GetServerSidePropsResult<IndexProps>
+> {
+  const initialData = await fetcher<GetAllCarsQuery, GetAllCarsQueryVariables>(
+    GetAllCarsDocument
+  )()
+
+  return {
+    props: { initialData },
+  }
+}
+
+const Index = ({ initialData }: IndexProps) => {
+  const { data } = useGetAllCarsQuery({}, { initialData })
   const router = useRouter()
 
   return (

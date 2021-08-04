@@ -11,35 +11,54 @@ import {
   ModalOverlay,
   Text,
 } from '@chakra-ui/react'
+import { GetServerSidePropsContext, GetServerSidePropsResult } from 'next'
 import { useRouter } from 'next/dist/client/router'
-import React, { useEffect, useMemo, useState } from 'react'
+import React, { useState } from 'react'
 
 import { IconButton, Layout } from 'UI'
 import { CarImage } from 'components'
-import { useGetCarQuery } from 'lib/graphql/generated/hooks'
+import { fetcher } from 'lib/graphql/api'
+import { GetCarDocument, useGetCarQuery } from 'lib/graphql/generated/hooks'
+import {
+  GetCarQuery,
+  GetCarQueryVariables,
+} from 'lib/graphql/generated/operations'
 import { isNumeric } from 'utils/string'
 
-const CarPage = () => {
+type CarPageProps = {
+  initialData: GetCarQuery
+}
+
+export async function getServerSideProps({
+  query,
+}: GetServerSidePropsContext): Promise<GetServerSidePropsResult<CarPageProps>> {
+  const id = query.id
+  if (!isNumeric(id)) {
+    return {
+      redirect: {
+        destination: '/',
+        permanent: false,
+      },
+    }
+  }
+
+  const initialData = await fetcher<GetCarQuery, GetCarQueryVariables>(
+    GetCarDocument,
+    { id: Number(id) }
+  )()
+
+  return {
+    props: { initialData },
+  }
+}
+
+const CarPage = ({ initialData }: CarPageProps) => {
   const router = useRouter()
   const [modalImage, setModalImage] = useState<string | null>(null)
-  const carId = useMemo(() => {
-    const { id } = router.query
-    if (!isNumeric(id)) return null
-    return Number(id)
-  }, [router.query])
 
   const { data, isLoading } = useGetCarQuery(
-    { id: carId as number },
-    { enabled: typeof carId === 'number' }
-  )
-
-  useEffect(
-    function handleInvalidId() {
-      if (typeof carId !== 'number') {
-        router.push('/')
-      }
-    },
-    [carId, router]
+    { id: Number(router.query.id) },
+    { initialData }
   )
 
   if (isLoading) return null
