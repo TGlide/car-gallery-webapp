@@ -66,7 +66,9 @@ const CarPage = ({ initialData }: CarPageProps) => {
   return (
     <>
       <Layout>
-        <Text variant="headingSmall">{data?.carById?.name}</Text>
+        <Text variant="headingSmall" sx={{ textAlign: 'center' }}>
+          {data?.carById?.name}
+        </Text>
         <Text variant="label" sx={{ fontStyle: 'italic' }}>
           {data?.carById?.year}
         </Text>
