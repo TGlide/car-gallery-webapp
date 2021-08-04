@@ -1,6 +1,5 @@
 import { CloseIcon, ViewIcon } from '@chakra-ui/icons'
 import {
-  css,
   Flex,
   Grid,
   IconButton as ChakraIconButton,
@@ -30,7 +29,6 @@ type CarPageProps = {
   initialData: GetCarQuery
 }
 
-css
 export async function getServerSideProps({
   query,
 }: GetServerSidePropsContext): Promise<GetServerSidePropsResult<CarPageProps>> {
@@ -91,7 +89,11 @@ const CarPage = ({ initialData }: CarPageProps) => {
         >
           {data?.carById?.images?.map((image, index) => {
             return (
-              <CarImage image={image || undefined} key={index}>
+              <CarImage
+                image={image || undefined}
+                key={index}
+                data-testid={`car-${index}-image`}
+              >
                 <IconButton
                   text="View image"
                   mr="0.5rem"
@@ -112,12 +114,17 @@ const CarPage = ({ initialData }: CarPageProps) => {
         <ModalOverlay />
         <ModalContent pb="1rem">
           <ModalHeader>
-            <Flex justifyContent="space-between" alignItems="center">
+            <Flex
+              justifyContent="space-between"
+              alignItems="center"
+              data-testid="modal"
+            >
               <Text variant="label">{data?.carById?.name}</Text>
               <ChakraIconButton
                 aria-label="close"
                 icon={<CloseIcon />}
                 onClick={() => setModalImage(null)}
+                data-testid="modal-close"
               />
             </Flex>
           </ModalHeader>

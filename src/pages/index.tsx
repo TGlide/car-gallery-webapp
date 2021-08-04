@@ -96,6 +96,7 @@ const Index = ({ initialData }: IndexProps) => {
                 display: 'inline-block',
                 mt: '1.5rem',
               }}
+              data-testid="view-gallery"
             >
               View gallery
             </Link>
@@ -138,6 +139,7 @@ const Index = ({ initialData }: IndexProps) => {
               label={car.name}
               description={car?.year?.toString()}
               key={car.id}
+              data-testid={`car-${car.id}-image`}
             >
               <IconButton
                 text="View more images"

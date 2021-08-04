@@ -1,4 +1,4 @@
-import { Box, Flex, Text } from '@chakra-ui/react'
+import { Box, Flex, FlexProps, Text } from '@chakra-ui/react'
 import { ReactNode } from 'react'
 
 import { Corner } from 'UI'
@@ -8,35 +8,38 @@ type CarImageProps = {
   label?: string
   description?: string
   children?: ReactNode
-}
+} & FlexProps
 
 export const CarImage = ({
   image,
   label,
   description,
   children,
+  ...rest
 }: CarImageProps) => {
   if (!image) {
     return null
   }
 
   return (
-    <Flex flexDir="column" justifyContent="center">
-      <Box
-        pos="relative"
-        sx={{
+    <Flex
+      flexDir="column"
+      justifyContent="center"
+      sx={{
+        '.buttons': {
+          pointerEvents: 'none',
+        },
+        _hover: {
           '.buttons': {
-            pointerEvents: 'none',
+            opacity: 1,
+            transform: 'translateY(0%)',
+            pointerEvents: 'auto',
           },
-          _hover: {
-            '.buttons': {
-              opacity: 1,
-              transform: 'translateY(0%)',
-              pointerEvents: 'auto',
-            },
-          },
-        }}
-      >
+        },
+      }}
+      {...rest}
+    >
+      <Box pos="relative">
         <Corner sizeInRem={3} position="upperLeft" />
         <Corner sizeInRem={3} position="bottomRight" />
         <Box

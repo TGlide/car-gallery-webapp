@@ -9,7 +9,7 @@ module.exports = {
     'plugin:import/typescript',
     'plugin:prettier/recommended',
   ],
-  plugins: ['react', 'prettier', 'react-hooks', 'import', 'jest'],
+  plugins: ['react', 'prettier', 'react-hooks', 'import', 'jest', 'cypress'],
   parserOptions: {
     sourceType: 'module',
   },
@@ -19,6 +19,7 @@ module.exports = {
     es6: true,
     jest: true,
     'jest/globals': true,
+    'cypress/globals': true,
   },
   settings: {
     react: {

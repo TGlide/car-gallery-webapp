@@ -27,6 +27,7 @@ export const Layout = ({ children, ...rest }: FlexProps) => {
             e.preventDefault()
             router.push('/')
           }}
+          data-testid="back-btn"
         >
           <Flex alignItems="center">
             <ArrowBackIcon mr="0.5rem" />
