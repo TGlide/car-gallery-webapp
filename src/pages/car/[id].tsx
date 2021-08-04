@@ -1,5 +1,6 @@
-import { CloseIcon, LinkIcon, ViewIcon } from '@chakra-ui/icons'
+import { CloseIcon, ViewIcon } from '@chakra-ui/icons'
 import {
+  css,
   Flex,
   Grid,
   IconButton as ChakraIconButton,
@@ -29,6 +30,7 @@ type CarPageProps = {
   initialData: GetCarQuery
 }
 
+css
 export async function getServerSideProps({
   query,
 }: GetServerSidePropsContext): Promise<GetServerSidePropsResult<CarPageProps>> {

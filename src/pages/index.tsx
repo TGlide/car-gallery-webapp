@@ -150,8 +150,6 @@ const Index = ({ initialData }: IndexProps) => {
                 text="Copy link"
                 mr="0.5rem"
                 onClick={() => {
-                  console.log('hey', window.location.href)
-
                   copy(`${window.location.href}car/${car.id}`)
                 }}
               >
