@@ -88,8 +88,7 @@ const Index = ({ initialData }: IndexProps) => {
               maxW: '30rem',
             }}
           >
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Et in
-            fermentum vitae, adipiscing ante pellentesque volutpat, amet.
+            Experience the true joy of driving with these timeless vehicles.
           </Text>
           <Flex
             sx={{
