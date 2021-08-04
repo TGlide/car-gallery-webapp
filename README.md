@@ -34,7 +34,7 @@
 
 ## About The Project
 
-This repo was created with Next JS, using Typescript. I chose this framework for its excelent Typescript support, optimizations, static file serving and also for its starter template with Chakra UI and Typescript, which I used as a starting point. Chakra UI was my styling choice for its high customization potential, and the utility-based props approach which is inspired by TailwindCSS, making development faster. 
+This repo was created with Next JS, using Typescript. I chose this framework for its excelent Typescript support, optimizations, server side rendering and also for its starter template with Chakra UI and Typescript, which I used as a starting point. Chakra UI was my styling choice for its high customization potential, and the utility-based props approach which is inspired by TailwindCSS, making development faster. 
 
 ### Built With
 
@@ -56,18 +56,27 @@ To get a local copy up and running follow these simple steps.
 
 ### Installation
 
-1. Clone the repo
+#### 1. Clone the repo
 
 ```sh
 git clone https://github.com/TGlide/car-gallery-webapp/
 cd car-gallery-webapp
 ```
 
-2. Install Yarn dependencies
+#### 2. Install Yarn dependencies
 
 ```sh
 yarn
 ```
+
+#### 3. Setup environment variables
+
+Create a `.env.local` file with the following variables:
+```
+  NEXT_PUBLIC_DATABASE_URL=http://localhost:5000/graphql
+```
+
+You should have a [car-gallery-server](https://github.com/TGlide/car-gallery-server) up and running.
 
 ## Usage
 
