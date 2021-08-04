@@ -113,8 +113,8 @@ const Index = ({ initialData }: IndexProps) => {
             display: { base: 'none', lg: 'block' },
           }}
         >
-          <Corner sx={{ position: 'upperLeft' }} />
-          <Corner sx={{ position: 'bottomRight' }} />
+          <Corner position="upperLeft" />
+          <Corner position="bottomRight" />
           <Box
             sx={{
               w: '30rem',
