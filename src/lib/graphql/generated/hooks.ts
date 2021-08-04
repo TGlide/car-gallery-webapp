@@ -4,7 +4,7 @@ import * as Types from './operations'
 
 function fetcher<TData, TVariables>(query: string, variables?: TVariables) {
   return async (): Promise<TData> => {
-    const res = await fetch(process.env.DATABASE_URL as string, {
+    const res = await fetch(process.env.NEXT_PUBLIC_DATABASE_URL as string, {
       method: 'POST',
       headers: { 'content-type': 'application/json' },
       body: JSON.stringify({ query, variables }),

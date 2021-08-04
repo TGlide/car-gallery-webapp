@@ -1,5 +1,5 @@
 schema:
-  - ${DATABASE_URL}
+  - ${NEXT_PUBLIC_DATABASE_URL}
 
 documents:
   - ./src/**/*.gql
@@ -31,7 +31,7 @@ generates:
       - typescript-react-query
     config:
       fetcher:
-        endpoint: process.env.DATABASE_URL
+        endpoint: process.env.NEXT_PUBLIC_DATABASE_URL
         fetchParams:
           headers:
             content-type: application/json
