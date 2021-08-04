@@ -56,18 +56,27 @@ To get a local copy up and running follow these simple steps.
 
 ### Installation
 
-1. Clone the repo
+#### 1. Clone the repo
 
 ```sh
 git clone https://github.com/TGlide/car-gallery-webapp/
 cd car-gallery-webapp
 ```
 
-2. Install Yarn dependencies
+#### 2. Install Yarn dependencies
 
 ```sh
 yarn
 ```
+
+#### 3. Setup environment variables
+
+Create a `.env.local` file with the following variables:
+```
+  NEXT_PUBLIC_DATABASE_URL=http://localhost:5000/graphql
+```
+
+You should have a [car-gallery-server](https://github.com/TGlide/car-gallery-server) up and running.
 
 ## Usage
 
