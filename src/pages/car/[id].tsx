@@ -97,9 +97,6 @@ const CarPage = ({ initialData }: CarPageProps) => {
                 >
                   <ViewIcon color="primary" />
                 </IconButton>
-                <IconButton text="Copy link" mr="0.5rem">
-                  <LinkIcon color="primary" />
-                </IconButton>
               </CarImage>
             )
           })}

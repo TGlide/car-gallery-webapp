@@ -1,5 +1,6 @@
 import { LinkIcon, ViewIcon } from '@chakra-ui/icons'
 import { Box, Flex, Grid, Link, Text } from '@chakra-ui/react'
+import copy from 'copy-to-clipboard'
 import { GetServerSidePropsResult } from 'next'
 import { useRouter } from 'next/dist/client/router'
 
@@ -145,7 +146,15 @@ const Index = ({ initialData }: IndexProps) => {
               >
                 <ViewIcon color="primary" />
               </IconButton>
-              <IconButton text="Copy link" mr="0.5rem">
+              <IconButton
+                text="Copy link"
+                mr="0.5rem"
+                onClick={() => {
+                  console.log('hey', window.location.href)
+
+                  copy(`${window.location.href}car/${car.id}`)
+                }}
+              >
                 <LinkIcon color="primary" />
               </IconButton>
             </CarImage>
