@@ -23,9 +23,9 @@ export const CarImage = ({
 
   return (
     <Flex
-      flexDir="column"
-      justifyContent="center"
       sx={{
+        flexDir: 'column',
+        justifyContent: 'center',
         '.buttons': {
           pointerEvents: 'none',
         },
@@ -43,12 +43,14 @@ export const CarImage = ({
         <Corner sizeInRem={3} position="upperLeft" />
         <Corner sizeInRem={3} position="bottomRight" />
         <Box
-          w="20rem"
-          h="12rem"
-          background={`url(${image})`}
-          backgroundSize="cover"
-          backgroundPosition="center"
-          borderRadius="0.5rem"
+          sx={{
+            w: '20rem',
+            h: '12rem',
+            background: `url(${image})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            borderRadius: '0.5rem',
+          }}
         />
         <Flex
           className="buttons"
@@ -66,16 +68,18 @@ export const CarImage = ({
         </Flex>
       </Box>
       {label && (
-        <Text textAlign="center" variant="label" mt="0.5rem">
+        <Text sx={{ textAlign: 'center', mt: '0.5rem' }} variant="label">
           {label}
         </Text>
       )}
       {description && (
         <Text
-          textAlign="center"
-          fontStyle="italic"
           variant="label"
-          mt="-0.5rem"
+          sx={{
+            textAlign: 'center',
+            fontStyle: 'italic',
+            mt: '-0.5rem',
+          }}
         >
           {description}
         </Text>

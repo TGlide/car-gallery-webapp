@@ -25,14 +25,15 @@ export const Corner = ({
   const { colorMode } = useColorMode()
   return (
     <Box
-      w={`${sizeInRem}rem`}
-      h={`${sizeInRem}rem`}
-      bgColor={colorMode === 'dark' ? 'gray.900' : 'background'}
-      position="absolute"
-      boxShadow="0.5rem 0rem 5px -5px rgba(0, 0, 0, 0.25)"
-      transform={
-        position === 'bottomRight' ? 'rotate(-135deg)' : 'rotate(45deg)'
-      }
+      sx={{
+        w: `${sizeInRem}rem`,
+        h: `${sizeInRem}rem`,
+        bgColor: colorMode === 'dark' ? 'gray.900' : 'background',
+        position: 'absolute',
+        boxShadow: '0.5rem 0rem 5px -5px rgba(0, 0, 0, 0.25)',
+        transform:
+          position === 'bottomRight' ? 'rotate(-135deg)' : 'rotate(45deg)',
+      }}
       {...positionProps}
       {...rest}
     >

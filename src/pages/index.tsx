@@ -37,15 +37,21 @@ const Index = ({ initialData }: IndexProps) => {
   const router = useRouter()
 
   return (
-    <Layout pt="0">
-      <Flex height="100vh" minHeight="41.25rem" alignItems="center">
+    <Layout sx={{ pt: '0' }}>
+      <Flex
+        sx={{
+          height: '100vh',
+          minHeight: '41.25rem',
+          alignItems: 'center',
+        }}
+      >
         <Box>
           <Box
-            pos="relative"
-            ml="-0.5rem"
-            mr="-5rem"
-            zIndex="10"
             sx={{
+              pos: 'relative',
+              ml: '-0.5rem',
+              mr: '-5rem',
+              zIndex: '10',
               textAlign: { base: 'center', lg: 'left' },
               maxW: '100%',
             }}
@@ -108,15 +114,17 @@ const Index = ({ initialData }: IndexProps) => {
             display: { base: 'none', lg: 'block' },
           }}
         >
-          <Corner position="upperLeft" />
-          <Corner position="bottomRight" />
+          <Corner sx={{ position: 'upperLeft' }} />
+          <Corner sx={{ position: 'bottomRight' }} />
           <Box
-            w="30rem"
-            h="35rem"
-            background={`url(https://i.imgur.com/Sj16XCO.jpeg)`}
-            backgroundSize="cover"
-            backgroundPosition="center"
-            borderRadius="0.5rem"
+            sx={{
+              w: '30rem',
+              h: '35rem',
+              background: `url(https://i.imgur.com/Sj16XCO.jpeg)`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              borderRadius: '0.5rem',
+            }}
           />
         </Box>
       </Flex>
@@ -143,16 +151,20 @@ const Index = ({ initialData }: IndexProps) => {
             >
               <IconButton
                 text="View more images"
-                mr="0.5rem"
                 onClick={() => router.push(`car/${car.id}`)}
+                sx={{
+                  mr: '0.5rem',
+                }}
               >
                 <ViewIcon color="primary" />
               </IconButton>
               <IconButton
                 text="Copy link"
-                mr="0.5rem"
                 onClick={() => {
                   copy(`${window.location.href}car/${car.id}`)
+                }}
+                sx={{
+                  mr: '0.5rem',
                 }}
               >
                 <LinkIcon color="primary" />

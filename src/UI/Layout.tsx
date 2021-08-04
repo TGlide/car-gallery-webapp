@@ -37,12 +37,14 @@ export const Layout = ({ children, ...rest }: FlexProps) => {
       )}
 
       <Ellipse
-        pos="absolute"
-        w="16rem"
-        h="16rem"
-        left="-5rem"
-        top="-5rem"
-        zIndex="10"
+        sx={{
+          pos: 'absolute',
+          w: '16rem',
+          h: '16rem',
+          left: '-5rem',
+          top: '-5rem',
+          zIndex: '10',
+        }}
       />
       <Container pt="5rem" {...rest}>
         {children}

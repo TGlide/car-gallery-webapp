@@ -67,7 +67,7 @@ const CarPage = ({ initialData }: CarPageProps) => {
     <>
       <Layout>
         <Text variant="headingSmall">{data?.carById?.name}</Text>
-        <Text variant="label" fontStyle="italic">
+        <Text variant="label" sx={{ fontStyle: 'italic' }}>
           {data?.carById?.year}
         </Text>
         <Grid
@@ -96,7 +96,9 @@ const CarPage = ({ initialData }: CarPageProps) => {
               >
                 <IconButton
                   text="View image"
-                  mr="0.5rem"
+                  sx={{
+                    mr: '0.5rem',
+                  }}
                   onClick={() => setModalImage(image)}
                 >
                   <ViewIcon color="primary" />
@@ -115,8 +117,10 @@ const CarPage = ({ initialData }: CarPageProps) => {
         <ModalContent pb="1rem">
           <ModalHeader>
             <Flex
-              justifyContent="space-between"
-              alignItems="center"
+              sx={{
+                justifyContent: 'space-between',
+                alignItems: 'center',
+              }}
               data-testid="modal"
             >
               <Text variant="label">{data?.carById?.name}</Text>
