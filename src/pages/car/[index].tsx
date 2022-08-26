@@ -11,43 +11,18 @@ import {
   ModalOverlay,
   Text,
 } from '@chakra-ui/react'
-import { GetServerSidePropsContext, GetServerSidePropsResult } from 'next'
-import { useRouter } from 'next/dist/client/router'
-import React, { useState } from 'react'
+import { GetServerSidePropsContext } from 'next'
+import { useState } from 'react'
 
 import { IconButton, Layout } from 'UI'
 import { CarImage } from 'components'
-import { fetcher } from 'lib/graphql/api'
-import { GetCarDocument, useGetCarQuery } from 'lib/graphql/generated/hooks'
-import {
-  GetCarQuery,
-  GetCarQueryVariables,
-} from 'lib/graphql/generated/operations'
-import { isNumeric } from 'utils/string'
+import cars, { Car } from 'data/cars'
 
-type CarPageProps = {
-  initialData: GetCarQuery
-}
+export async function getServerSideProps({ query }: GetServerSidePropsContext) {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any -- we check if it's a valid number later on
+  const index = parseInt(query.index as any)
 
-export async function getServerSideProps({
-  query,
-}: GetServerSidePropsContext): Promise<GetServerSidePropsResult<CarPageProps>> {
-  const id = query.id
-  if (!isNumeric(id)) {
-    return {
-      redirect: {
-        destination: '/',
-        permanent: false,
-      },
-    }
-  }
-
-  const initialData = await fetcher<GetCarQuery, GetCarQueryVariables>(
-    GetCarDocument,
-    { id: Number(id) }
-  )()
-
-  if (!initialData.carById) {
+  if (Number.isNaN(index)) {
     return {
       redirect: {
         destination: '/',
@@ -57,48 +32,36 @@ export async function getServerSideProps({
   }
 
   return {
-    props: { initialData },
+    props: {
+      car: cars[index],
+    },
   }
 }
 
-const CarPage = ({ initialData }: CarPageProps) => {
-  const router = useRouter()
+const CarPage = ({ car }: { car: Car }) => {
   const [modalImage, setModalImage] = useState<string | null>(null)
-
-  const { data, isLoading } = useGetCarQuery(
-    { id: Number(router.query.id) },
-    { initialData }
-  )
-
-  if (isLoading) return null
 
   return (
     <>
       <Layout>
         <Text variant="headingSmall" sx={{ textAlign: 'center' }}>
-          {data?.carById?.name}
+          {car.name}
         </Text>
         <Text variant="label" sx={{ fontStyle: 'italic' }}>
-          {data?.carById?.year}
+          {car?.year}
         </Text>
         <Grid
           sx={{
             gridTemplateColumns: {
               base: '1fr',
-              md: `repeat(${Math.min(
-                2,
-                data?.carById?.images.length || 0
-              )},1fr)`,
-              lg: `repeat(${Math.min(
-                3,
-                data?.carById?.images.length || 0
-              )}, 1fr)`,
+              md: `repeat(${Math.min(2, car.images.length || 0)},1fr)`,
+              lg: `repeat(${Math.min(3, car.images.length || 0)}, 1fr)`,
             },
             gridGap: '2rem',
             mt: '2rem',
           }}
         >
-          {data?.carById?.images?.map((image, index) => {
+          {car.images?.map((image, index) => {
             return (
               <CarImage
                 image={image || undefined}
@@ -123,6 +86,7 @@ const CarPage = ({ initialData }: CarPageProps) => {
         isOpen={!!modalImage}
         onClose={() => setModalImage(null)}
         isCentered
+        size={'6xl'}
       >
         <ModalOverlay />
         <ModalContent pb="1rem">
@@ -134,7 +98,7 @@ const CarPage = ({ initialData }: CarPageProps) => {
               }}
               data-testid="modal"
             >
-              <Text variant="label">{data?.carById?.name}</Text>
+              <Text variant="label">{car.name}</Text>
               <ChakraIconButton
                 aria-label="close"
                 icon={<CloseIcon />}
@@ -144,7 +108,12 @@ const CarPage = ({ initialData }: CarPageProps) => {
             </Flex>
           </ModalHeader>
           <ModalBody>
-            <Image src={modalImage || ''} />
+            <Image
+              src={modalImage || ''}
+              sx={{
+                borderRadius: 8,
+              }}
+            />
           </ModalBody>
         </ModalContent>
       </Modal>

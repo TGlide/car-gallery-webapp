@@ -1,39 +1,13 @@
 import { LinkIcon, ViewIcon } from '@chakra-ui/icons'
 import { Box, Flex, Grid, Link, Text } from '@chakra-ui/react'
 import copy from 'copy-to-clipboard'
-import { GetServerSidePropsResult } from 'next'
 import { useRouter } from 'next/dist/client/router'
 
 import { Corner, IconButton, Layout } from 'UI'
 import { CarImage } from 'components'
-import { fetcher } from 'lib/graphql/api'
-import {
-  GetAllCarsDocument,
-  useGetAllCarsQuery,
-} from 'lib/graphql/generated/hooks'
-import {
-  GetAllCarsQuery,
-  GetAllCarsQueryVariables,
-} from 'lib/graphql/generated/operations'
+import cars from 'data/cars'
 
-type IndexProps = {
-  initialData: GetAllCarsQuery
-}
-
-export async function getServerSideProps(): Promise<
-  GetServerSidePropsResult<IndexProps>
-> {
-  const initialData = await fetcher<GetAllCarsQuery, GetAllCarsQueryVariables>(
-    GetAllCarsDocument
-  )()
-
-  return {
-    props: { initialData },
-  }
-}
-
-const Index = ({ initialData }: IndexProps) => {
-  const { data } = useGetAllCarsQuery({}, { initialData })
+const Index = () => {
   const router = useRouter()
 
   return (
@@ -133,25 +107,25 @@ const Index = ({ initialData }: IndexProps) => {
         sx={{
           gridTemplateColumns: {
             base: '1fr',
-            md: `repeat(${Math.min(2, data?.allCars?.totalCount || 0)}, 1fr)`,
-            lg: `repeat(${Math.min(3, data?.allCars?.totalCount || 0)}, 1fr)`,
+            md: `repeat(${Math.min(2, cars.length || 0)}, 1fr)`,
+            lg: `repeat(${Math.min(3, cars.length || 0)}, 1fr)`,
           },
           gridGap: '2rem',
           placeItems: 'start',
         }}
       >
-        {data?.allCars?.nodes.map((car) => {
+        {cars.map((car, index) => {
           return (
             <CarImage
               image={car.images[0] || undefined}
               label={car.name}
               description={car?.year?.toString()}
-              key={car.id}
-              data-testid={`car-${car.id}-image`}
+              key={index}
+              data-testid={`car-${index}-image`}
             >
               <IconButton
                 text="View more images"
-                onClick={() => router.push(`car/${car.id}`)}
+                onClick={() => router.push(`car/${index}`)}
                 sx={{
                   mr: '0.5rem',
                 }}
@@ -161,7 +135,7 @@ const Index = ({ initialData }: IndexProps) => {
               <IconButton
                 text="Copy link"
                 onClick={() => {
-                  copy(`${window.location.href}car/${car.id}`)
+                  copy(`${window.location.href}car/${index}`)
                 }}
                 sx={{
                   mr: '0.5rem',
